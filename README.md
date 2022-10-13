@@ -11,4 +11,4 @@
 4) Uruchomić kontener Docker poleceniem ``./vendor/bin/sail up``
 5) Wejść do kontenera aplikacji poleceniem ``Docker exec -it {id} bash``
 6) Uruchomić polecenie ``php artisan migrate``
-7) Uruchomić customowe polecenie artisan do pobrania i uzupełnienia danych dotyczących aktualnego kursu ``php artisna UpdateOrCreateCurrency``
+7) Uruchomić customowe polecenie artisan do pobrania i uzupełnienia danych dotyczących aktualnego kursu ``php artisan UpdateOrCreateCurrency``
