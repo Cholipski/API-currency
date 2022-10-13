@@ -12,3 +12,8 @@
 5) Wejść do kontenera aplikacji poleceniem ``Docker exec -it {id} bash``
 6) Uruchomić polecenie ``php artisan migrate``
 7) Uruchomić customowe polecenie artisan do pobrania i uzupełnienia danych dotyczących aktualnego kursu ``php artisan UpdateOrCreateCurrency``
+
+
+## Wymagania
+ - Docker
+ - Docker compose
