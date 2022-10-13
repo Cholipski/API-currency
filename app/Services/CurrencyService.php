@@ -3,7 +3,9 @@ declare(strict_types=1);
 
 namespace App\Services;
 
+use App\Models\Currency;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 
 final class CurrencyService
@@ -12,6 +14,27 @@ final class CurrencyService
     {
         try{
             $collection = $this->getDataFromAPI();
+            DB::transaction(function() use ($collection){
+                foreach ($collection->first()->rates as $key => $item) {
+                    $currency = Currency::where("name","=",$item->currency)->first();
+                    if($currency === null){
+                        Currency::create([
+                            'name' => $item->currency,
+                            'currency_code' => $item->code,
+                            'exchange_rate' => (float)$item->mid
+                        ]);
+                    }
+                    else{
+                        Currency::where("name","=",$item->currency)
+                            ->update([
+                                'exchange_rate' => (float)$item->mid
+                            ]);
+                    }
+
+                }
+            });
+            print("Currency created/updated successfully \n");
+
         }catch(\Exception $e) {
             error_log($e->getMessage());
         }
