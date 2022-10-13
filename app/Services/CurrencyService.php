@@ -8,11 +8,10 @@ use Illuminate\Support\Facades\Http;
 
 final class CurrencyService
 {
-    public function init(): void
+    public function UpdateOrCreate():void
     {
         try{
             $collection = $this->getDataFromAPI();
-            $this->UpdateOrCreate($collection->first()->rates);
         }catch(\Exception $e) {
             error_log($e->getMessage());
         }
@@ -31,8 +30,5 @@ final class CurrencyService
 
     }
 
-    private function UpdateOrCreate(Collection $rates)
-    {
-        // code
-    }
+
 }
